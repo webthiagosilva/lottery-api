@@ -67,13 +67,13 @@ class TicketController extends Controller
      *
      * @responseFile responses/tickets.get.json
      *
-     * @param  Ticket  $ticket
+     * @param  string  $ticketCode
      * @return TicketResource
      */
-    public function show(Ticket $ticket)
+    public function show(string $ticketCode)
     {
         return new TicketResource(
-            $this->service->showTicket($ticket->uuid)
+            $this->service->showTicket($ticketCode)
         );
     }
 }

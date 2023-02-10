@@ -37,6 +37,6 @@ class LotteryService
         return Ticket::query()
             ->where('uuid', $uuid)
             ->where('is_active', true)
-            ->first();
+            ->firstOrFail();
     }
 }
