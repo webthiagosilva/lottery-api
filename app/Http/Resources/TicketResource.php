@@ -15,11 +15,12 @@ class TicketResource extends JsonResource
     public function toArray($request)
     {
         return [
+            'ticket_code' => $this->uuid,
             'name' => $this->user_name,
             'your_numbers' => $this->selected_numbers,
             'machine_numbers' => $this->machine_numbers,
             'winner' => $this->is_winner,
-            'message' => empty($this->is_winner)
+            'message' => $this->machine_draw_at === null
                 ? __('lottery.draw.not_drawn')
                 : ($this->is_winner ? __('lottery.draw.won') : __('lottery.draw.lost')),
         ];
