@@ -124,7 +124,7 @@ class Handler extends ExceptionHandler
             case $exception instanceof HttpException:
                 return $exception->getMessage();
             case $exception instanceof ModelNotFoundException:
-                return 'The requested resource was not found';
+                return $exception->getMessage();
             case $exception instanceof AuthenticationException:
                 return 'Unauthorized access';
             case $exception instanceof ValidationException:
