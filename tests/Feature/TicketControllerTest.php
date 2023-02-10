@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\Ticket;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Symfony\Component\HttpFoundation\Response;
@@ -39,5 +40,19 @@ class TicketControllerTest extends TestCase
         ]);
 
         $response->assertStatus(Response::HTTP_UNPROCESSABLE_ENTITY);
+    }
+
+    /**
+     * Should be able to show a ticket as expected.
+     *
+     * @return void
+     */
+    public function testShowTicket()
+    {
+        $ticketCode = Ticket::factory()->create()->uuid;
+
+        $response = $this->get("/api/tickets/{$ticketCode}");
+
+        $response->assertStatus(Response::HTTP_OK);
     }
 }
